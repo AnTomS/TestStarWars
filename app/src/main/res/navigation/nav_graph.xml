@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/FirstFragment">
+    app:startDestination="@id/planetsFragment">
 
     <fragment
         android:id="@+id/FirstFragment"
@@ -25,4 +25,19 @@
             android:id="@+id/action_SecondFragment_to_FirstFragment"
             app:destination="@id/FirstFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/filmsFragment"
+        android:name="com.atom.teststarwars.presentation.ui.films.FilmsFragment"
+        android:label="fragment_films"
+        tools:layout="@layout/fragment_films" />
+    <fragment
+        android:id="@+id/peopleFragment"
+        android:name="com.atom.teststarwars.presentation.ui.peoples.PeopleFragment"
+        android:label="fragment_people"
+        tools:layout="@layout/fragment_people" />
+    <fragment
+        android:id="@+id/planetsFragment"
+        android:name="com.atom.teststarwars.presentation.ui.planets.PlanetsFragment"
+        android:label="fragment_planets"
+        tools:layout="@layout/fragment_planets" />
 </navigation>

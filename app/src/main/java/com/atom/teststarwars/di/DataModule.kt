@@ -2,7 +2,7 @@ package com.atom.teststarwars.di
 
 import android.app.Application
 import com.atom.teststarwars.data.network.ApiService
-import com.atom.teststarwars.data.repository.filmsrepositoryimpl.FilmRepositoryImpl
+import com.atom.teststarwars.data.repository.filmsrepositoryimpl.FilmsRepositoryImpl
 import com.atom.teststarwars.data.repository.peoplesrepositoryimpl.PeopleRepositoryImpl
 import com.atom.teststarwars.data.repository.planetsrepositoryimpl.PlanetsRepositoryImpl
 import dagger.Module
@@ -22,8 +22,8 @@ class DataModule(private val application: Application) {
     @Singleton
     fun provideFilmRepositoryImpl(
         apiService: ApiService
-    ): FilmRepositoryImpl {
-        return FilmRepositoryImpl(apiService)
+    ): FilmsRepositoryImpl {
+        return FilmsRepositoryImpl(apiService)
     }
 
     @Provides
