@@ -21,7 +21,7 @@ data class People(
     @SerializedName("height")
     val height: String,
     @SerializedName("homeworld")
-    val homeworld: String,
+    val homeWorld: String,
     @SerializedName("mass")
     val mass: String,
     @SerializedName("name")
