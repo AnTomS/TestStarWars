@@ -3,38 +3,26 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/planetsFragment">
+    app:startDestination="@id/filmsFragment">
 
-    <fragment
-        android:id="@+id/FirstFragment"
-        android:name="com.atom.teststarwars.presentation.ui.FirstFragment"
-        android:label="@string/first_fragment_label"
-        tools:layout="@layout/fragment_first">
-
-        <action
-            android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/SecondFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/SecondFragment"
-        android:name="com.atom.teststarwars.presentation.ui.SecondFragment"
-        android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second">
-
-        <action
-            android:id="@+id/action_SecondFragment_to_FirstFragment"
-            app:destination="@id/FirstFragment" />
-    </fragment>
     <fragment
         android:id="@+id/filmsFragment"
         android:name="com.atom.teststarwars.presentation.ui.films.FilmsFragment"
         android:label="fragment_films"
-        tools:layout="@layout/fragment_films" />
+        tools:layout="@layout/fragment_films" >
+        <action
+            android:id="@+id/action_filmsFragment_to_peopleFragment"
+            app:destination="@id/peopleFragment" />
+    </fragment>
     <fragment
         android:id="@+id/peopleFragment"
         android:name="com.atom.teststarwars.presentation.ui.peoples.PeopleFragment"
         android:label="fragment_people"
-        tools:layout="@layout/fragment_people" />
+        tools:layout="@layout/fragment_people" >
+        <action
+            android:id="@+id/action_peopleFragment_to_planetsFragment"
+            app:destination="@id/planetsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/planetsFragment"
         android:name="com.atom.teststarwars.presentation.ui.planets.PlanetsFragment"

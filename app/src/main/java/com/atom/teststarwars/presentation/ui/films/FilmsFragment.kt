@@ -20,6 +20,8 @@ class FilmsFragment : Fragment() {
     @Inject
     lateinit var filmsViewModel: FilmsViewModel
 
+    private val filmAdapter = FilmsAdapter()
+
     override fun onAttach(context: Context) {
         super.onAttach(context)
         Log.d("FilmsFragment", "onAttach")
@@ -39,14 +41,19 @@ class FilmsFragment : Fragment() {
 
         _binding = FragmentFilmsBinding.inflate(inflater, container, false)
 
+        binding.filmsRecyclerView.adapter = filmAdapter
+
         filmsViewModel.films.observe(viewLifecycleOwner, { state ->
             when (state) {
                 is LoadingState.Loading -> {
                     Log.d("FilmsFragment", "Loading films...")
                 }
+
                 is LoadingState.Success -> {
                     Log.d("FilmsFragment", "Films loaded: ${state.data}")
+                    filmAdapter.setItems(state.data)
                 }
+
                 is LoadingState.Error -> {
                     Log.e("FilmsFragment", "Error loading films: ${state.exception}")
                 }
