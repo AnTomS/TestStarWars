@@ -41,7 +41,7 @@ android {
 }
 
 dependencies {
-
+    implementation(libs.recyclerview)
     implementation(libs.dagger)
     implementation(libs.dagger.android.support)
     implementation(libs.dagger.android.processor)

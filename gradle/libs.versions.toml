@@ -22,6 +22,7 @@ org-jetbrains-kotlin-android = "1.8.0"
 room = "2.5.1"
 legacySupportV4 = "1.0.0"
 fragmentKtx = "1.5.6"
+recyclerview = "1.3.0"
 
 [libraries]
 dagger = { group = "com.google.dagger", name = "dagger-android", version.ref = "dagger" }
@@ -31,7 +32,7 @@ dagger-compiler = { group = "com.google.dagger", name = "dagger-compiler", versi
 
 kotlinx-coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "coroutines" }
 kotlinx-coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutines" }
-
+recyclerview = { group = "androidx.recyclerview", name = "recyclerview", version.ref = "recyclerview" }
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
 converter-gson = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofit" }
 

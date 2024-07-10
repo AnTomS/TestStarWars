@@ -1,5 +1,6 @@
 package com.atom.teststarwars.presentation.ui.films
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -12,11 +13,12 @@ class FilmsAdapter() : RecyclerView.Adapter<FilmsAdapter.FilmsViewHolder>() {
 
 
     fun setItems(items: List<Result>) {
+        Log.d("FilmsAdapter", "Set items: $items")
         this.items = items
         notifyDataSetChanged()
     }
 
-    class FilmsViewHolder(val binding: CardviewForFilmsBinding) :
+    class FilmsViewHolder(private val binding: CardviewForFilmsBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: Result) {
             binding.apply {
@@ -29,15 +31,15 @@ class FilmsAdapter() : RecyclerView.Adapter<FilmsAdapter.FilmsViewHolder>() {
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FilmsViewHolder {
-        val inflater = LayoutInflater.from(parent.context)
-        val binding = CardviewForFilmsBinding.inflate(inflater, parent, false)
+        val binding = CardviewForFilmsBinding.inflate(
+            LayoutInflater.from(parent.context), parent, false
+        )
         return FilmsViewHolder(binding)
     }
 
     override fun getItemCount(): Int = items.size
 
     override fun onBindViewHolder(holder: FilmsViewHolder, position: Int) {
-
         holder.bind(items[position])
     }
 }

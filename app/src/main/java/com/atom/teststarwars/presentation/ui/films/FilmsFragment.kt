@@ -7,6 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.atom.teststarwars.databinding.FragmentFilmsBinding
 import com.atom.teststarwars.presentation.App
 import com.atom.teststarwars.presentation.state.LoadingState
@@ -20,7 +22,7 @@ class FilmsFragment : Fragment() {
     @Inject
     lateinit var filmsViewModel: FilmsViewModel
 
-    private val filmAdapter = FilmsAdapter()
+    private lateinit var filmAdapter: FilmsAdapter
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -36,32 +38,42 @@ class FilmsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val appComponent = (requireActivity().application as App).appComponent
-        appComponent.inject(this)
-
         _binding = FragmentFilmsBinding.inflate(inflater, container, false)
+        Log.d("FilmsFragment", "Binding initialized")
 
-        binding.filmsRecyclerView.adapter = filmAdapter
+        setupRecyclerView()
 
-        filmsViewModel.films.observe(viewLifecycleOwner, { state ->
+        filmsViewModel.films.observe(viewLifecycleOwner) { state ->
             when (state) {
                 is LoadingState.Loading -> {
                     Log.d("FilmsFragment", "Loading films...")
                 }
-
                 is LoadingState.Success -> {
-                    Log.d("FilmsFragment", "Films loaded: ${state.data}")
-                    filmAdapter.setItems(state.data)
+                    val list = state.data
+                    Log.d("FilmsFragment", "Films loaded: $list")
+                    filmAdapter.setItems(list)
                 }
-
                 is LoadingState.Error -> {
                     Log.e("FilmsFragment", "Error loading films: ${state.exception}")
                 }
             }
-        })
+        }
 
         filmsViewModel.getFilmsList()
 
         return binding.root
+    }
+
+    private fun setupRecyclerView() {
+        val rc = binding.filmsRecyclerView
+        filmAdapter = FilmsAdapter()
+        rc.adapter = filmAdapter
+ //       rc.layoutManager = LinearLayoutManager(context)
+        Log.d("FilmsFragment", "RecyclerView setup complete")
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

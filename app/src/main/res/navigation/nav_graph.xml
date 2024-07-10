@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/filmsFragment"
         android:name="com.atom.teststarwars.presentation.ui.films.FilmsFragment"
-        android:label="fragment_films"
+        android:label="экран для списка фильмов"
         tools:layout="@layout/fragment_films" >
         <action
             android:id="@+id/action_filmsFragment_to_peopleFragment"

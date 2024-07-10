@@ -9,18 +9,18 @@ import com.atom.teststarwars.data.database.entity.FilmEntity
 import com.atom.teststarwars.data.database.entity.PeopleEntity
 import com.atom.teststarwars.data.database.entity.PlanetEntity
 
-@Database(
-    entities = [
-        FilmEntity::class,
-        PlanetEntity::class,
-        PeopleEntity::class,
-    ],
-    version = 2,
-    exportSchema = false
-)
-
-abstract class AppDatabase : RoomDatabase() {
-    abstract val filmDAO: FilmDAO
-    abstract val peopleDAO: PeopleDAO
-    abstract val planetDAO: PlanetDAO
-}
+//@Database(
+//    entities = [
+//        FilmEntity::class,
+//        PlanetEntity::class,
+//        PeopleEntity::class,
+//    ],
+//    version = 2,
+//    exportSchema = false
+//)
+//
+//abstract class AppDatabase : RoomDatabase() {
+//    abstract val filmDAO: FilmDAO
+//    abstract val peopleDAO: PeopleDAO
+//    abstract val planetDAO: PlanetDAO
+//}
