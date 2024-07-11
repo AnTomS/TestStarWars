@@ -45,7 +45,7 @@ dependencies {
     implementation(libs.dagger)
     implementation(libs.dagger.android.support)
     implementation(libs.dagger.android.processor)
-    implementation(libs.androidx.legacy.support.v4)
+
     implementation(libs.androidx.fragment.ktx)
     kapt(libs.dagger.compiler)
 

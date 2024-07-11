@@ -7,8 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.atom.teststarwars.databinding.FragmentFilmsBinding
 import com.atom.teststarwars.presentation.App
 import com.atom.teststarwars.presentation.state.LoadingState
@@ -48,29 +46,32 @@ class FilmsFragment : Fragment() {
                 is LoadingState.Loading -> {
                     Log.d("FilmsFragment", "Loading films...")
                 }
+
                 is LoadingState.Success -> {
                     val list = state.data
                     Log.d("FilmsFragment", "Films loaded: $list")
-                    filmAdapter.setItems(list)
+                    filmAdapter.submitList(list)
                 }
+
                 is LoadingState.Error -> {
                     Log.e("FilmsFragment", "Error loading films: ${state.exception}")
                 }
             }
         }
-
         filmsViewModel.getFilmsList()
 
         return binding.root
     }
 
     private fun setupRecyclerView() {
+
         val rc = binding.filmsRecyclerView
+
         filmAdapter = FilmsAdapter()
         rc.adapter = filmAdapter
- //       rc.layoutManager = LinearLayoutManager(context)
         Log.d("FilmsFragment", "RecyclerView setup complete")
     }
+
 
     override fun onDestroyView() {
         super.onDestroyView()

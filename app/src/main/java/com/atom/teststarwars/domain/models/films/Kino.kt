@@ -3,7 +3,7 @@ package com.atom.teststarwars.domain.models.films
 
 import com.google.gson.annotations.SerializedName
 
-data class Result(
+data class Kino(
     @SerializedName("characters")
     val characters: List<String>,
     @SerializedName("created")

@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.atom.teststarwars.domain.models.films.Result
+import com.atom.teststarwars.domain.models.films.Kino
 import com.atom.teststarwars.domain.usecase.filmsusecase.GetFilmsListUseCase
 import com.atom.teststarwars.presentation.state.LoadingState
 import kotlinx.coroutines.launch
@@ -13,8 +13,8 @@ import javax.inject.Inject
 class FilmsViewModel @Inject constructor(private val getFilmsListUseCase: GetFilmsListUseCase) :
     ViewModel() {
 
-    private val _films = MutableLiveData<LoadingState<List<Result>>>()
-    val films: LiveData<LoadingState<List<Result>>> get() = _films
+    private val _films = MutableLiveData<LoadingState<List<Kino>>>()
+    val films: LiveData<LoadingState<List<Kino>>> get() = _films
 
     fun getFilmsList() {
         viewModelScope.launch {
@@ -27,4 +27,5 @@ class FilmsViewModel @Inject constructor(private val getFilmsListUseCase: GetFil
             }
         }
     }
+
 }

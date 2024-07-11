@@ -2,7 +2,7 @@ package com.atom.teststarwars.data.database.entity
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.atom.teststarwars.domain.models.films.Result
+import com.atom.teststarwars.domain.models.films.Kino
 import com.google.gson.annotations.SerializedName
 
 
@@ -38,8 +38,8 @@ data class FilmEntity(
     @SerializedName("vehicles")
     val vehicles: List<String>
 ) {
-    fun toDomain(): Result =
-        Result(
+    fun toDomain(): Kino =
+        Kino(
             characters = characters,
             created = created,
             director = director,
@@ -57,7 +57,7 @@ data class FilmEntity(
         )
 
     companion object {
-        fun fromDomain(film: Result): FilmEntity =
+        fun fromDomain(film: Kino): FilmEntity =
             FilmEntity(
                 characters = film.characters,
                 created = film.created,
