@@ -19,6 +19,8 @@ class PeopleFragment : Fragment() {
     @Inject
     lateinit var peopleViewModel: PeopleViewModel
 
+    private lateinit var peopleAdapter: PeopleAdapter
+
     override fun onAttach(context: Context) {
         super.onAttach(context)
         Log.d("PeopleFragment", "onAttach")
@@ -38,6 +40,8 @@ class PeopleFragment : Fragment() {
 
         _binding = FragmentPeopleBinding.inflate(inflater, container, false)
 
+        setupRecyclerView()
+
         peopleViewModel.peopleList.observe(viewLifecycleOwner, { state ->
             when (state) {
                 is LoadingState.Loading -> {
@@ -46,6 +50,7 @@ class PeopleFragment : Fragment() {
 
                 is LoadingState.Success -> {
                     Log.d("FilmsFragment", "Films loaded: ${state.data}")
+                    peopleAdapter.submitList(state.data)
                 }
 
                 is LoadingState.Error -> {
@@ -57,4 +62,20 @@ class PeopleFragment : Fragment() {
         peopleViewModel.getPeopleList()
         return binding.root
     }
+
+    private fun setupRecyclerView() {
+
+        val rc = binding.peoplesRecyclerView
+
+        peopleAdapter = PeopleAdapter()
+        rc.adapter = peopleAdapter
+        Log.d("FilmsFragment", "RecyclerView setup complete")
+    }
+
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
 }
