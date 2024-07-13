@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="8dp"
+    android:layout_marginTop="4dp"
+    android:layout_marginEnd="8dp"
+    android:background="@drawable/shape_for_card"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="4dp"
+    app:cardUseCompatPadding="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/field_name_planet"
+            style="@style/MyTextStyleForTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin8"
+            android:gravity="center"
+            android:text="название планеты" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/field_diameter"
+            style="@style/MyTextStyleFor_film"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin8"
+            android:text="диаметр" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/field_climate"
+            style="@style/MyTextStyleFor_film"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin8"
+            android:text="тип климата" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/field_gravity"
+            style="@style/MyTextStyleFor_film"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin8"
+            android:text="гравитация" />
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/field_terrain"
+            style="@style/MyTextStyleFor_film"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin8"
+            android:text="Типа местности" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/field_population"
+            style="@style/MyTextStyleFor_film"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin8"
+            android:text="Население" />
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
