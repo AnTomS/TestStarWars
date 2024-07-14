@@ -13,6 +13,7 @@ import com.atom.teststarwars.domain.models.films.Kino
 
 class FilmsAdapter() : ListAdapter<Kino, FilmsAdapter.FilmsViewHolder>(FilmDiffUtilCallback()) {
 
+    var onItemClickListener: OnItemClickListener? = null
 
     class FilmsViewHolder(private val binding: CardviewForFilmsBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -48,7 +49,15 @@ class FilmsAdapter() : ListAdapter<Kino, FilmsAdapter.FilmsViewHolder>(FilmDiffU
     override fun onBindViewHolder(holder: FilmsViewHolder, position: Int) {
         val film = getItem(position)
         holder.bind(film)
+        holder.itemView.setOnClickListener {
+            onItemClickListener?.onItemClick(film)
+        }
         Log.d("FilmsAdapter", "Bind item at position $position: ${film.title}")
+    }
+
+
+    interface OnItemClickListener {
+        fun onItemClick(film: Kino)
     }
 }
 

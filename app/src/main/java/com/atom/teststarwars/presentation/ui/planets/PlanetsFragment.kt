@@ -7,13 +7,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
-import com.atom.teststarwars.R
-import com.atom.teststarwars.databinding.FragmentPeopleBinding
 import com.atom.teststarwars.databinding.FragmentPlanetsBinding
 import com.atom.teststarwars.presentation.App
 import com.atom.teststarwars.presentation.state.LoadingState
-import com.atom.teststarwars.presentation.ui.peoples.PeopleViewModel
 import javax.inject.Inject
 
 class PlanetsFragment : Fragment() {
@@ -22,6 +18,8 @@ class PlanetsFragment : Fragment() {
 
     @Inject
     lateinit var planetViewModel: PlanetsViewModel
+
+    private lateinit var planetAdapter: PlanetsAdapter
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -41,16 +39,20 @@ class PlanetsFragment : Fragment() {
         appComponent.inject(this)
 
         _binding = FragmentPlanetsBinding.inflate(inflater, container, false)
-
+        setupRecyclerView()
 
         planetViewModel.planets.observe(viewLifecycleOwner, { state ->
             when (state) {
                 is LoadingState.Loading -> {
                     Log.d("FilmsFragment", "Loading films...")
                 }
+
                 is LoadingState.Success -> {
+                    val planet=state.data
                     Log.d("FilmsFragment", "Films loaded: ${state.data}")
+
                 }
+
                 is LoadingState.Error -> {
                     Log.e("FilmsFragment", "Error loading films: ${state.exception}")
                 }
@@ -59,5 +61,21 @@ class PlanetsFragment : Fragment() {
 
         planetViewModel.getPlanetsList()
         return binding.root
+    }
+
+
+    private fun setupRecyclerView() {
+
+        val rc = binding.peoplesRecyclerView
+
+        planetAdapter = PlanetsAdapter()
+        rc.adapter = planetAdapter
+        Log.d("FilmsFragment", "RecyclerView setup complete")
+    }
+
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

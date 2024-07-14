@@ -14,23 +14,25 @@ class PeopleAdapter() :
 
     class PeopleViewHolder(private val binding: CardviewForPeopleBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: People) {
+        fun bind(people: People) {
             binding.apply {
-                fieldNamePeople.text = item.name
-                fieldGender.text = item.gender
-                fieldDateBirthYear.text = item.birthYear
+                fieldNamePeople.text = people.name
+                fieldGender.text = people.gender
+                fieldDateBirthYear.text = people.birthYear
 
             }
         }
     }
 
     override fun onCreateViewHolder(
-        parent: ViewGroup,
-        viewType: Int
+        parent: ViewGroup, viewType: Int
     ): PeopleAdapter.PeopleViewHolder {
-        val binding = CardviewForPeopleBinding.inflate(
-            LayoutInflater.from(parent.context), parent, false
-        )
+        val binding =
+            CardviewForPeopleBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
         return PeopleViewHolder(binding)
     }
 

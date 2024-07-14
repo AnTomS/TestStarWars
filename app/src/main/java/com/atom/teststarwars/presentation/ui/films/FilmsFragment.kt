@@ -6,8 +6,10 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.atom.teststarwars.databinding.FragmentFilmsBinding
+import com.atom.teststarwars.domain.models.films.Kino
 import com.atom.teststarwars.presentation.App
 import com.atom.teststarwars.presentation.state.LoadingState
 import javax.inject.Inject
@@ -59,6 +61,12 @@ class FilmsFragment : Fragment() {
             }
         }
         filmsViewModel.getFilmsList()
+        filmAdapter.onItemClickListener = object : FilmsAdapter.OnItemClickListener {
+            override fun onItemClick(film: Kino) {
+                Toast.makeText(context, film.title, Toast.LENGTH_SHORT).show()
+            }
+
+        }
 
         return binding.root
     }

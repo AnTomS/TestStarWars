@@ -49,8 +49,6 @@ class MainActivity : AppCompatActivity() {
     private fun setupToolbar() {
         val toolbar = findViewById<MaterialToolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
-
-        // Update the toolbar text
         val toolbarText = findViewById<TextView>(R.id.toolbar_text)
         toolbarText.text = "Старые звездные войны"
     }
