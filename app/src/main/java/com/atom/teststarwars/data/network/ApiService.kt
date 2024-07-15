@@ -15,5 +15,4 @@ interface ApiService {
 
     @GET("films")
     suspend fun getFilmsList(): Response<Films>
-
 }

@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
 import com.atom.teststarwars.databinding.FragmentFilmsBinding
 import com.atom.teststarwars.domain.models.films.Kino
 import com.atom.teststarwars.presentation.App
@@ -64,6 +65,10 @@ class FilmsFragment : Fragment() {
         filmAdapter.onItemClickListener = object : FilmsAdapter.OnItemClickListener {
             override fun onItemClick(film: Kino) {
                 Toast.makeText(context, film.title, Toast.LENGTH_SHORT).show()
+                val action = FilmsFragmentDirections.actionFilmsFragmentToPeopleFragment(film)
+                Navigation.findNavController(binding.root)
+                    .navigate(action)
+
             }
 
         }
