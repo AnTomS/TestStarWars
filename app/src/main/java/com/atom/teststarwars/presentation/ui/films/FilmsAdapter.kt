@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.atom.teststarwars.databinding.CardviewForFilmsBinding
 import com.atom.teststarwars.domain.models.films.Kino
 
-//class FilmsAdapter() : RecyclerView.Adapter<FilmsAdapter.FilmsViewHolder>() {
 
 class FilmsAdapter() : ListAdapter<Kino, FilmsAdapter.FilmsViewHolder>(FilmDiffUtilCallback()) {
 

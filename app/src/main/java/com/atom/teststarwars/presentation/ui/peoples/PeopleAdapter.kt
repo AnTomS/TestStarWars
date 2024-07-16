@@ -11,6 +11,7 @@ import com.atom.teststarwars.domain.models.people.People
 class PeopleAdapter() :
     ListAdapter<People, PeopleAdapter.PeopleViewHolder>(PeopleDiffUtilCallback()) {
 
+    var onPeopleClickListener: OnPeopleClickListener? = null
 
     class PeopleViewHolder(private val binding: CardviewForPeopleBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -39,6 +40,13 @@ class PeopleAdapter() :
     override fun onBindViewHolder(holder: PeopleAdapter.PeopleViewHolder, position: Int) {
         val people = getItem(position)
         holder.bind(people)
+        holder.itemView.setOnClickListener {
+            onPeopleClickListener?.onFilmClick(people)
+        }
+    }
+
+    interface OnPeopleClickListener {
+        fun onFilmClick(people: People)
     }
 }
 
@@ -50,5 +58,6 @@ class PeopleDiffUtilCallback : DiffUtil.ItemCallback<People>() {
     override fun areContentsTheSame(oldItem: People, newItem: People): Boolean {
         return oldItem == newItem
     }
+
 
 }
