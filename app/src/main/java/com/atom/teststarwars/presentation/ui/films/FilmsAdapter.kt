@@ -7,12 +7,13 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.atom.teststarwars.databinding.CardviewForFilmsBinding
+import com.atom.teststarwars.domain.models.films.Films
 import com.atom.teststarwars.domain.models.films.Kino
 
 
 class FilmsAdapter() : ListAdapter<Kino, FilmsAdapter.FilmsViewHolder>(FilmDiffUtilCallback()) {
 
-    var onItemClickListener: OnItemClickListener? = null
+    var onItemClickListener: ((Kino) -> Unit)? = null
 
     class FilmsViewHolder(private val binding: CardviewForFilmsBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -49,7 +50,7 @@ class FilmsAdapter() : ListAdapter<Kino, FilmsAdapter.FilmsViewHolder>(FilmDiffU
         val film = getItem(position)
         holder.bind(film)
         holder.itemView.setOnClickListener {
-            onItemClickListener?.onItemClick(film)
+            onItemClickListener?.invoke(film)
         }
         Log.d("FilmsAdapter", "Bind item at position $position: ${film.title}")
     }

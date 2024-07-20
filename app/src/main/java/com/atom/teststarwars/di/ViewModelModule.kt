@@ -41,4 +41,5 @@ class ViewModelModule {
         return ViewModelFactory { FilmsViewModel(getFilmsListUseCase) }
     }
 
+
 }

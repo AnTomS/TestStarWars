@@ -20,9 +20,6 @@
         android:name="com.atom.teststarwars.presentation.ui.peoples.PeopleFragment"
         android:label="fragment_people"
         tools:layout="@layout/fragment_people">
-        <argument
-            android:name="film"
-            app:argType="film" />
         <action
             android:id="@+id/action_peopleFragment_to_planetsFragment"
             app:destination="@id/planetsFragment" />
@@ -32,8 +29,5 @@
         android:name="com.atom.teststarwars.presentation.ui.planets.PlanetsFragment"
         android:label="fragment_planets"
         tools:layout="@layout/fragment_planets" >
-        <argument
-            android:name="planet"
-            app:argType="planet" />
     </fragment>
 </navigation>

@@ -54,7 +54,7 @@ class PeopleFragment : Fragment() {
                 }
 
                 is LoadingState.Error -> {
-                    Log.e("FilmsFragment", "Error loading films: ${state.exception}")
+                    Log.d("FilmsFragment", "Error loading films: ${state.exception}")
                 }
             }
         })

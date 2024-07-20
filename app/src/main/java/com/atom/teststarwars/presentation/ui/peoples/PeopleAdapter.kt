@@ -8,10 +8,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.atom.teststarwars.databinding.CardviewForPeopleBinding
 import com.atom.teststarwars.domain.models.people.People
 
+
 class PeopleAdapter() :
     ListAdapter<People, PeopleAdapter.PeopleViewHolder>(PeopleDiffUtilCallback()) {
 
-    var onPeopleClickListener: OnPeopleClickListener? = null
+    var onPeopleClickListener: ((People) -> Unit)? = null
 
     class PeopleViewHolder(private val binding: CardviewForPeopleBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -41,12 +42,8 @@ class PeopleAdapter() :
         val people = getItem(position)
         holder.bind(people)
         holder.itemView.setOnClickListener {
-            onPeopleClickListener?.onFilmClick(people)
+            onPeopleClickListener?.invoke(people)
         }
-    }
-
-    interface OnPeopleClickListener {
-        fun onFilmClick(people: People)
     }
 }
 

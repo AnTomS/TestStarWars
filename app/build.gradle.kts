@@ -51,7 +51,7 @@ dependencies {
 
     implementation(libs.room.ktx)
     implementation(libs.room.runtime)
-    kapt(libs.room.compiler)
+
 
     implementation(libs.glide)
     implementation(libs.gson)

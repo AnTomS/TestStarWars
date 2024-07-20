@@ -10,10 +10,10 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import com.atom.teststarwars.databinding.FragmentFilmsBinding
-import com.atom.teststarwars.domain.models.films.Kino
 import com.atom.teststarwars.presentation.App
 import com.atom.teststarwars.presentation.state.LoadingState
 import javax.inject.Inject
+
 
 class FilmsFragment : Fragment() {
 
@@ -39,6 +39,9 @@ class FilmsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        val appComponent = (requireActivity().application as App).appComponent
+        appComponent.inject(this)
+
         _binding = FragmentFilmsBinding.inflate(inflater, container, false)
         Log.d("FilmsFragment", "Binding initialized")
 
@@ -62,32 +65,28 @@ class FilmsFragment : Fragment() {
             }
         }
         filmsViewModel.getFilmsList()
-        filmAdapter.onItemClickListener = object : FilmsAdapter.OnItemClickListener {
-            override fun onItemClick(film: Kino) {
-                Toast.makeText(context, film.title, Toast.LENGTH_SHORT).show()
-                val action = FilmsFragmentDirections.actionFilmsFragmentToPeopleFragment(film)
-                Navigation.findNavController(binding.root)
-                    .navigate(action)
-
-            }
-
+        filmAdapter.onItemClickListener = {
+            val film = it
+            Toast.makeText(context, film.title, Toast.LENGTH_SHORT).show()
+            val action = FilmsFragmentDirections.actionFilmsFragmentToPeopleFragment()
+            Navigation.findNavController(binding.root)
+                .navigate(action)
         }
+    return binding.root
+}
 
-        return binding.root
-    }
+private fun setupRecyclerView() {
 
-    private fun setupRecyclerView() {
+    val rc = binding.filmsRecyclerView
 
-        val rc = binding.filmsRecyclerView
-
-        filmAdapter = FilmsAdapter()
-        rc.adapter = filmAdapter
-        Log.d("FilmsFragment", "RecyclerView setup complete")
-    }
+    filmAdapter = FilmsAdapter()
+    rc.adapter = filmAdapter
+    Log.d("FilmsFragment", "RecyclerView setup complete")
+}
 
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
+override fun onDestroyView() {
+    super.onDestroyView()
+    _binding = null
+}
 }

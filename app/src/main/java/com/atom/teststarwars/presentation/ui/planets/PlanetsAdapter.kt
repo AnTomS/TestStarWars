@@ -13,6 +13,9 @@ class PlanetsAdapter() :
     class PlanetViewHolder(private val binding: CardviewForPlanetsBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
+
+
+
         fun bind(planet: Planet) {
             binding.apply {
                 fieldNamePlanet.text = planet.name

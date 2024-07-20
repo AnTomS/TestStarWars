@@ -50,7 +50,6 @@ class PlanetsFragment : Fragment() {
                 is LoadingState.Success -> {
                     val planet=state.data
                     Log.d("FilmsFragment", "Films loaded: ${state.data}")
-
                 }
 
                 is LoadingState.Error -> {
